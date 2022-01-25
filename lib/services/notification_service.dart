@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -41,16 +43,19 @@ class NotificationService {
     const NotificationDetails platformChannelSpecifics =
         NotificationDetails(android: androidChannel);
 
-    // await __notification.show(
-    //     0, this.title, this.body, platformChannelSpecifics);
+    // Generate random number
+    int randomNumber = Random().nextInt(100);
+
+    await __notification.show(
+        randomNumber, this.title, this.body, platformChannelSpecifics);
 
     // Schedule a notification to be shown in 5 seconds.
-    await __notification.zonedSchedule(
-        0, title, body, _nextInstanceOfSevenAM(), platformChannelSpecifics,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-        androidAllowWhileIdle: true,
-        matchDateTimeComponents: DateTimeComponents.time);
+    // await __notification.zonedSchedule(
+    //     0, title, body, _nextInstanceOfSevenAM(), platformChannelSpecifics,
+    //     uiLocalNotificationDateInterpretation:
+    //         UILocalNotificationDateInterpretation.absoluteTime,
+    //     androidAllowWhileIdle: true,
+    //     matchDateTimeComponents: DateTimeComponents.time);
   }
 
   tz.TZDateTime _nextInstanceOfSevenAM() {

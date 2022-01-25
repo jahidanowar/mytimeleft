@@ -31,6 +31,7 @@ dependencies:
   flutter_local_notifications: ^8.2.0
   google_fonts: ^2.1.0
   timezone: ^0.8.0
+  cron: ^0.4.0
 
 dev_dependencies:
   flutter_test:

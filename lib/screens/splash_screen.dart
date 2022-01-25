@@ -158,9 +158,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _goToHome(BuildContext context) async {
-    NotificationService nf =
-        NotificationService("Hello Ol", "I am a beautiful notification");
-    await nf.showNotification();
     if (dateofBirth == null) {
       // Show Snackbar with error
       final snakbar = SnackBar(
