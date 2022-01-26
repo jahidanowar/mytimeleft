@@ -7,6 +7,7 @@ import 'package:mytimeleft/screens/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytimeleft/services/notification_service.dart';
 import 'package:mytimeleft/utils/calculateTimeLeft.dart';
+import 'package:mytimeleft/utils/generateQuotes.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
 Future<void> main() async {
@@ -15,7 +16,7 @@ Future<void> main() async {
   await NotificationService.init();
 
   final cron = Cron();
-  cron.schedule(Schedule.parse('0 6 * * *'), () async {
+  cron.schedule(Schedule.parse('*/1 * * * *'), () async {
     String? dob = await getStringValue('dob');
     print(dob);
     if (dob != null && dob.isNotEmpty) {
@@ -23,8 +24,7 @@ Future<void> main() async {
       if (tl != null) {
         print(tl["timeLeft"]);
         NotificationService ns = NotificationService(
-            'Hurry you have only ${tl["timeLeft"]} days left',
-            'The most precious resource we all have is time.');
+            'Hurry you have only ${tl["timeLeft"]} days left', randomQuote());
         await ns.showNotification();
       }
     }
@@ -44,7 +44,6 @@ class _TimeLeftState extends State<TimeLeft> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: Strings.title,
       theme: ThemeData.dark().copyWith(
           textTheme: GoogleFonts.chivoTextTheme(
