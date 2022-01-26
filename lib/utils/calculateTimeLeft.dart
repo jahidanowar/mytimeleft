@@ -1,7 +1,4 @@
-Map<String, String>? calculateTimeLeft(String dob) {
-  if (dob.isEmpty) {
-    return null;
-  }
+String calculateTimeLeft(String dob) {
   final now = DateTime.now();
   final dateofbirth = DateTime.parse(dob);
   // Add 70 years to the date of birth
@@ -9,12 +6,9 @@ Map<String, String>? calculateTimeLeft(String dob) {
 
   // Calculate the difference between now and dateofdie in days
   final difference = dateofdie.difference(now).inDays;
-  final birthToNow = now.difference(dateofbirth).inDays;
+  // final birthToNow = now.difference(dateofbirth).inDays;
 
-  return {
-    'timeLeft': difference.toString(),
-    'birthToNow': birthToNow.toString(),
-  };
+  return difference.toString();
 
   // setState(() {
   //   timeLeft = difference;

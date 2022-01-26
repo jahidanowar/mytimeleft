@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/data/latest.dart' as tz;
+// import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 final FlutterLocalNotificationsPlugin __notification =
@@ -39,6 +39,8 @@ class NotificationService {
       'alarm_notif',
       'alarm_notif',
       'Channel for Alarm notification',
+      importance: Importance.max,
+      priority: Priority.high,
     );
     const NotificationDetails platformChannelSpecifics =
         NotificationDetails(android: androidChannel);

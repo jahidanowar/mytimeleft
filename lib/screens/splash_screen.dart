@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mytimeleft/screens/home_screen.dart';
-import 'package:mytimeleft/services/notification_service.dart';
 import 'package:mytimeleft/widgets/blur_box.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mytimeleft/models/Prefs.dart';
@@ -17,20 +15,19 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   DateTime? dateofBirth;
-  String? dob;
+  late String dob;
 
   @override
   void initState() {
-    super.initState();
     checkFirstTime();
+    super.initState();
   }
 
   checkFirstTime() async {
     try {
       print("Checking first time");
       dob = await getStringValue('dob');
-      print(dob);
-      if (dob != null) {
+      if (dob.isNotEmpty) {
         return Navigator.pushNamed(context, HomeScreen.routeName);
       }
     } catch (e) {

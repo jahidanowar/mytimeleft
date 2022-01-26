@@ -4,6 +4,7 @@ import 'package:mytimeleft/resources/Strings.dart';
 import 'package:mytimeleft/screens/splash_screen.dart';
 import 'package:mytimeleft/widgets/blur_box.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workmanager/workmanager.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -14,14 +15,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String? dob;
+  late String dob;
   int? timeLeft;
   int? daysSpent;
 
   @override
   void initState() {
-    super.initState();
     _setDob();
+
+    super.initState();
   }
 
   _setDob() async {
@@ -34,11 +36,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   _calculateTimeLeft() {
-    if (dob == null) {
+    if (dob.isEmpty) {
       return;
     }
     final now = DateTime.now();
-    final dateofbirth = DateTime.parse(this.dob!);
+    final dateofbirth = DateTime.parse(this.dob);
     // Add 60 years to the date of birth
     final dateofdie = dateofbirth.add(Duration(days: 70 * 365));
 
